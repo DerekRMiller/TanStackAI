@@ -100,6 +100,9 @@ export function createChat<
     ...(options.initialMessages !== undefined && {
       initialMessages: options.initialMessages,
     }),
+    ...(options.persistence !== undefined && {
+      persistence: options.persistence,
+    }),
     ...(options.body !== undefined && { body: options.body }),
     ...(options.forwardedProps !== undefined && {
       forwardedProps: options.forwardedProps,
@@ -150,6 +153,8 @@ export function createChat<
       sessionGenerating = isGenerating
     },
   })
+
+  messages = client.getMessages()
 
   if (options.live) {
     client.subscribe()
